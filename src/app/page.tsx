@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import About from "@/components/About"
 import Events from "@/components/Events"
-import Workshops from "@/components/Workshops"
 import Schedule from "@/components/Schedule"
 import Registration from "@/components/Registration"
 import Contact from "@/components/Contact"
@@ -48,10 +47,6 @@ export default function Home() {
         
         <div className="scroll-reveal">
           <Events />
-        </div>
-        
-        <div className="scroll-reveal">
-          <Workshops />
         </div>
         
         <div className="scroll-reveal">
