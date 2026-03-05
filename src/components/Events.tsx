@@ -19,7 +19,6 @@ const technicalEvents = [
   {
     title: "Project Expo",
     desc: "Showcase your hardware or software innovations to industry experts.",
-    prize: "₹10,000",
     icon: Cpu,
     tags: ["Innovation", "Hardware", "Software"],
     details: "A grand stage for innovators. Whether it's an IoT prototype, an AI-powered app, or a revolutionary hardware design, present your project and compete for the top spot. Evaluation is based on technical complexity, social impact, and scalability."
@@ -27,7 +26,6 @@ const technicalEvents = [
   {
     title: "Paperix",
     desc: "Present your technical research papers on cutting-edge technologies.",
-    prize: "₹5,000",
     icon: FileText,
     tags: ["Research", "Presentation"],
     details: "The ultimate platform for academic excellence. Submit and present your original research papers in domains like AI, Cybersecurity, Blockchain, or Quantum Computing. Focus on methodology, innovation, and clarity of presentation."
@@ -35,7 +33,6 @@ const technicalEvents = [
   {
     title: "Web craft",
     desc: "Design and build the most responsive and aesthetic web solutions.",
-    prize: "₹6,000",
     icon: Globe,
     tags: ["Frontend", "Backend", "UI/UX"],
     details: "Transform ideas into digital reality. Participants will be given a theme and must build a functional web application within the time limit. Judging criteria include UI/UX design, code efficiency, and feature implementation."
@@ -43,7 +40,6 @@ const technicalEvents = [
   {
     title: "Bug Bounding",
     desc: "Hunt for vulnerabilities and fix critical errors in complex codebases.",
-    prize: "₹4,000",
     icon: ShieldAlert,
     tags: ["Debugging", "Security"],
     details: "Test your analytical skills by diving into buggy codebases. Identify security flaws, logic errors, and performance bottlenecks. The faster and more accurately you patch the system, the higher you climb."
@@ -51,7 +47,6 @@ const technicalEvents = [
   {
     title: "Quiz war",
     desc: "Battle it out in a high-intensity technical trivia challenge.",
-    prize: "₹3,000",
     icon: Trophy,
     tags: ["Knowledge", "Speed"],
     details: "A fast-paced technical quiz covering everything from computer architecture to modern software trends. Multiple rounds including buzzer rounds and rapid-fire questions will determine the ultimate tech wizard."
@@ -59,7 +54,6 @@ const technicalEvents = [
   {
     title: "Prompt Battle",
     desc: "Master the art of Generative AI by crafting the perfect prompts.",
-    prize: "₹5,000",
     icon: Sparkles,
     tags: ["GenAI", "Creativity"],
     details: "Compete in the frontier of AI. Participants are given specific image or text generation tasks and must use LLMs or diffusion models to produce the closest match using expert prompting techniques."
@@ -101,7 +95,7 @@ export default function Events() {
                     <event.icon className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:scale-110 transition-transform duration-500" />
                   </div>
                   <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 font-headline text-[8px] md:text-[10px] uppercase">
-                    WIN {event.prize}
+                    TECHNICAL
                   </Badge>
                 </div>
 
@@ -155,11 +149,11 @@ export default function Events() {
             </DialogHeader>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center">
-                <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">TOP PRIZE</span>
-                <span className="font-headline text-xl md:text-2xl text-accent">{selectedEvent?.prize}</span>
+              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center text-center">
+                <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">CERTIFICATE</span>
+                <span className="font-headline text-xl md:text-2xl text-accent">EXCELLENCE</span>
               </div>
-              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center">
+              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center text-center">
                 <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">ELIGIBILITY</span>
                 <span className="font-headline text-base md:text-lg text-foreground">UG/PG Students</span>
               </div>

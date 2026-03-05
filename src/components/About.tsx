@@ -8,7 +8,7 @@ const stats = [
   { label: "PARTICIPANTS", value: 1000, icon: Users, suffix: "+" },
   { label: "EVENTS", value: 6, icon: Trophy, suffix: "" },
   { label: "COLLEGES", value: 10, icon: School, suffix: "+" },
-  { label: "PRIZE POOL", value: 50000, icon: Terminal, prefix: "₹", suffix: "+" },
+  { label: "INNOVATIONS", value: 50, icon: Terminal, suffix: "+" },
 ]
 
 export default function About() {
@@ -66,7 +66,7 @@ export default function About() {
             <div key={stat.label} className="glass p-5 md:p-8 rounded-xl md:rounded-2xl group hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
               <stat.icon className="w-6 h-6 md:w-10 md:h-10 text-accent mb-3 md:mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-xl sm:text-3xl md:text-5xl font-black font-headline text-foreground mb-1 md:mb-2">
-                {stat.prefix}{counts[i].toLocaleString()}{stat.suffix}
+                {counts[i].toLocaleString()}{stat.suffix}
               </div>
               <div className="text-[8px] sm:text-xs tracking-[0.2em] font-headline text-foreground/50">{stat.label}</div>
             </div>
