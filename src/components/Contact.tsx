@@ -28,10 +28,10 @@ export default function Contact() {
                     FACULTY IN-CHARGE
                   </div>
                   <div className="text-lg md:text-xl font-headline group-hover:text-accent transition-colors">
-                    Dr. L.R. Priya
+                    Dr. E. MANOHAR
                   </div>
                   <div className="flex items-center gap-2 text-foreground/60 mt-1 text-sm">
-                    <Phone className="w-4 h-4 text-accent" /> +91 94436 45678
+                    <Phone className="w-4 h-4 text-accent" /> +91 9443670173
                   </div>
                 </div>
                 <div className="group">
