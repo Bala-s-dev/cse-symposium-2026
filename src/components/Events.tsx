@@ -69,125 +69,125 @@ export default function Events() {
   const [selectedEvent, setSelectedEvent] = useState<any>(null)
 
   return (
-    <section id="events" className="py-24 relative">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[150px] rounded-full -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 blur-[150px] rounded-full -z-10" />
+    <section id="events" className="py-16 md:py-24 relative">
+      <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-accent/5 blur-[100px] md:blur-[150px] rounded-full -z-10" />
+      <div className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-primary/5 blur-[100px] md:blur-[150px] rounded-full -z-10" />
 
       <div className="container mx-auto px-4 md:px-8">
-        <div className="max-w-3xl mb-16">
-          <Badge variant="outline" className="border-accent/30 text-accent font-headline mb-4 uppercase tracking-[0.2em] px-4 py-1">
+        <div className="max-w-3xl mb-12 md:mb-16">
+          <Badge variant="outline" className="border-accent/30 text-accent font-headline mb-4 uppercase tracking-[0.2em] px-3 md:px-4 py-1 text-[10px] md:text-xs">
             Elite Competitions
           </Badge>
-          <h2 className="text-4xl md:text-7xl font-black font-headline text-gradient mb-6">TECHNICAL ARENA</h2>
-          <p className="text-foreground/60 text-lg md:text-xl leading-relaxed">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black font-headline text-gradient mb-4 md:mb-6 leading-tight">TECHNICAL ARENA</h2>
+          <p className="text-foreground/60 text-base md:text-xl leading-relaxed">
             Push your limits across six specialized domains. Where knowledge meets execution in the ultimate test of skill.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
           {technicalEvents.map((event) => (
             <div 
               key={event.title}
-              className="glass p-8 rounded-[2rem] group hover:border-accent border-transparent transition-all duration-500 cursor-pointer flex flex-col h-full relative overflow-hidden"
+              className="glass p-6 md:p-8 rounded-2xl md:rounded-[2rem] group hover:border-accent border-transparent transition-all duration-500 cursor-pointer flex flex-col h-full relative overflow-hidden"
               onClick={() => setSelectedEvent(event)}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-6">
-                  <div className="p-4 rounded-2xl bg-white/5 group-hover:bg-accent/10 transition-colors border border-white/5 group-hover:border-accent/20">
-                    <event.icon className="w-8 h-8 text-accent group-hover:scale-110 transition-transform duration-500" />
+                  <div className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-white/5 group-hover:bg-accent/10 transition-colors border border-white/5 group-hover:border-accent/20">
+                    <event.icon className="w-6 h-6 md:w-8 md:h-8 text-accent group-hover:scale-110 transition-transform duration-500" />
                   </div>
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 font-headline text-[10px] uppercase">
+                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 font-headline text-[8px] md:text-[10px] uppercase">
                     WIN {event.prize}
                   </Badge>
                 </div>
 
-                <h3 className="text-2xl font-headline mb-4 group-hover:text-accent transition-colors">
+                <h3 className="text-xl md:text-2xl font-headline mb-3 md:mb-4 group-hover:text-accent transition-colors">
                   {event.title}
                 </h3>
                 
-                <p className="text-foreground/50 text-sm mb-8 line-clamp-2 leading-relaxed">
+                <p className="text-foreground/50 text-xs md:text-sm mb-6 md:mb-8 line-clamp-2 leading-relaxed">
                   {event.desc}
                 </p>
 
-                <div className="mt-auto flex flex-wrap gap-2 pt-4">
+                <div className="mt-auto flex flex-wrap gap-1.5 md:gap-2 pt-4">
                   {event.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-headline text-foreground/30 uppercase tracking-widest bg-white/5 px-2 py-1 rounded-md">
+                    <span key={tag} className="text-[8px] md:text-[10px] font-headline text-foreground/30 uppercase tracking-widest bg-white/5 px-2 py-0.5 md:py-1 rounded-md">
                       #{tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-6 flex items-center gap-2 text-accent font-headline text-xs tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 uppercase">
-                  View Rules & Reg <ArrowRight className="w-4 h-4" />
+                <div className="pt-4 md:pt-6 flex items-center gap-2 text-accent font-headline text-[10px] md:text-xs tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 uppercase">
+                  View Rules & Reg <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-20 text-center">
-          <div className="glass inline-flex items-center gap-6 p-6 rounded-3xl border-white/5">
-            <div className="text-left">
-              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Total Events</div>
-              <div className="text-xl font-headline text-foreground">06 Specialized Tracks</div>
+        <div className="mt-12 md:mt-20 text-center">
+          <div className="glass inline-flex flex-col md:flex-row items-center gap-4 md:gap-6 p-4 md:p-6 rounded-2xl md:rounded-3xl border-white/5 w-full md:w-auto">
+            <div className="text-center md:text-left">
+              <div className="text-[10px] font-headline text-foreground/40 uppercase tracking-widest mb-1">Total Events</div>
+              <div className="text-lg md:text-xl font-headline text-foreground">06 Specialized Tracks</div>
             </div>
-            <div className="w-px h-12 bg-white/10" />
-            <div className="text-left">
-              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Participation</div>
-              <div className="text-xl font-headline text-accent">Teams & Individuals</div>
+            <div className="hidden md:block w-px h-12 bg-white/10" />
+            <div className="text-center md:text-left">
+              <div className="text-[10px] font-headline text-foreground/40 uppercase tracking-widest mb-1">Participation</div>
+              <div className="text-lg md:text-xl font-headline text-accent">Teams & Individuals</div>
             </div>
           </div>
         </div>
       </div>
 
       <Dialog open={!!selectedEvent} onOpenChange={() => setSelectedEvent(null)}>
-        <DialogContent className="glass border-accent/20 max-w-2xl bg-background/95 text-foreground backdrop-blur-2xl p-0 overflow-hidden rounded-[2.5rem]">
-          <div className="p-8 md:p-12 space-y-8">
+        <DialogContent className="glass border-accent/20 w-[90vw] md:max-w-2xl bg-background/95 text-foreground backdrop-blur-2xl p-0 overflow-hidden rounded-2xl md:rounded-[2.5rem]">
+          <div className="p-6 md:p-12 space-y-6 md:space-y-8 max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 rounded-2xl bg-accent/10 border border-accent/20">
-                  {selectedEvent?.icon && <selectedEvent.icon className="w-10 h-10 text-accent" />}
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-4 md:mb-6">
+                <div className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-accent/10 border border-accent/20">
+                  {selectedEvent?.icon && <selectedEvent.icon className="w-8 h-8 md:w-10 md:h-10 text-accent" />}
                 </div>
                 <div>
-                  <DialogTitle className="text-3xl md:text-4xl font-headline text-foreground">
+                  <DialogTitle className="text-2xl md:text-4xl font-headline text-foreground">
                     {selectedEvent?.title}
                   </DialogTitle>
-                  <div className="flex gap-2 mt-2">
+                  <div className="flex flex-wrap gap-2 mt-2">
                     {selectedEvent?.tags?.map((tag: string) => (
-                      <Badge key={tag} variant="outline" className="border-white/10 text-[10px] uppercase text-foreground/50">{tag}</Badge>
+                      <Badge key={tag} variant="outline" className="border-white/10 text-[8px] md:text-[10px] uppercase text-foreground/50">{tag}</Badge>
                     ))}
                   </div>
                 </div>
               </div>
-              <DialogDescription className="text-foreground/70 text-lg leading-relaxed pt-2">
+              <DialogDescription className="text-foreground/70 text-base md:text-lg leading-relaxed pt-2">
                 {selectedEvent?.details}
               </DialogDescription>
             </DialogHeader>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-6 bg-white/5 rounded-3xl border border-white/10 flex flex-col justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center">
                 <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">TOP PRIZE</span>
-                <span className="font-headline text-2xl text-accent">{selectedEvent?.prize}</span>
+                <span className="font-headline text-xl md:text-2xl text-accent">{selectedEvent?.prize}</span>
               </div>
-              <div className="p-6 bg-white/5 rounded-3xl border border-white/10 flex flex-col justify-center">
+              <div className="p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl border border-white/10 flex flex-col justify-center">
                 <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">ELIGIBILITY</span>
-                <span className="font-headline text-lg text-foreground">UG/PG Students</span>
+                <span className="font-headline text-base md:text-lg text-foreground">UG/PG Students</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Button 
                 onClick={() => {
                   setSelectedEvent(null)
                   document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="flex-1 h-14 bg-accent text-background font-black font-headline tracking-widest uppercase hover:bg-accent/80 transition-all rounded-2xl text-lg"
+                className="flex-1 h-12 md:h-14 bg-accent text-background font-black font-headline tracking-widest uppercase hover:bg-accent/80 transition-all rounded-xl md:rounded-2xl text-base md:text-lg"
               >
                 REGISTER NOW
               </Button>
-              <Button variant="outline" className="flex-1 h-14 border-white/10 hover:bg-white/5 font-headline tracking-widest uppercase rounded-2xl">
+              <Button variant="outline" className="flex-1 h-12 md:h-14 border-white/10 hover:bg-white/5 font-headline tracking-widest uppercase rounded-xl md:rounded-2xl text-xs">
                 RULES BROCHURE
               </Button>
             </div>
