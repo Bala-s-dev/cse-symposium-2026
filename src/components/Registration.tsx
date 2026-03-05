@@ -97,7 +97,7 @@ export default function Registration() {
                       <FormItem>
                         <FormLabel className="font-headline tracking-widest text-xs uppercase opacity-60">College Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="FX Engineering College" {...field} className="h-12 bg-white/5 border-white/10 focus:border-accent rounded-xl" />
+                          <Input placeholder="College of Engineering" {...field} className="h-12 bg-white/5 border-white/10 focus:border-accent rounded-xl" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -131,11 +131,12 @@ export default function Registration() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="glass border-white/10 text-foreground">
-                          <SelectItem value="hackathon">24h Hackathon</SelectItem>
-                          <SelectItem value="code-sprint">Code Sprint</SelectItem>
-                          <SelectItem value="paper">Paper Presentation</SelectItem>
-                          <SelectItem value="quiz">Tech Quiz</SelectItem>
-                          <SelectItem value="workshop">AI Workshop</SelectItem>
+                          <SelectItem value="project-expo">Project Expo</SelectItem>
+                          <SelectItem value="paperix">Paperix</SelectItem>
+                          <SelectItem value="web-craft">Web craft</SelectItem>
+                          <SelectItem value="bug-bounding">Bug Bounding</SelectItem>
+                          <SelectItem value="quiz-war">Quiz war</SelectItem>
+                          <SelectItem value="prompt-battle">Prompt Battle</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />

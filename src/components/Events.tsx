@@ -5,91 +5,63 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { 
-  Code2, 
-  BrainCircuit, 
-  ShieldAlert, 
   Cpu, 
-  Laptop, 
-  Terminal, 
-  Database, 
-  Cloud, 
-  Binary, 
-  Layers,
+  FileText, 
+  Globe, 
+  ShieldAlert, 
+  Trophy, 
+  Sparkles,
   ArrowRight
 } from "lucide-react"
 
 const technicalEvents = [
   {
-    title: "24h Hackathon",
-    desc: "A high-stakes coding marathon to build industry-changing solutions.",
-    prize: "₹15,000",
-    icon: Terminal,
-    tags: ["Development", "AI", "Cloud"],
-    details: "Teams of 3-4 will compete to solve real-world problems. Full mentorship and API access provided. Judgment based on innovation, technical depth, and presentation. Start building the future today."
-  },
-  {
-    title: "Code Sprint",
-    desc: "Fast-paced competitive programming challenge.",
-    prize: "₹5,000",
-    icon: Code2,
-    tags: ["Algorithms", "DS"],
-    details: "Solve complex algorithmic problems within a set time limit. Platform: HackerRank. Languages: C++, Java, Python. Speed and accuracy are your only allies."
-  },
-  {
-    title: "AI Model Build",
-    desc: "Build and train models to solve specific data sets.",
-    prize: "₹8,000",
-    icon: BrainCircuit,
-    tags: ["Machine Learning", "Vision"],
-    details: "Participants are given a training dataset and must optimize their model for maximum accuracy on a hidden test set. Focus areas include Computer Vision and Natural Language Processing."
-  },
-  {
-    title: "CTF: Cyber Siege",
-    desc: "Capture the flag competition focusing on security exploits.",
-    prize: "₹7,000",
-    icon: ShieldAlert,
-    tags: ["Security", "Network"],
-    details: "Engage in a series of security challenges involving cryptography, web exploitation, and reverse engineering. Find the hidden flags before the time runs out."
-  },
-  {
-    title: "SQL Maestro",
-    desc: "Advanced database query optimization and design challenge.",
-    prize: "₹4,000",
-    icon: Database,
-    tags: ["Data", "SQL"],
-    details: "Test your skills in complex query writing, database normalization, and performance tuning. Only the most efficient data manipulators will survive."
-  },
-  {
-    title: "Cloud Architecture",
-    desc: "Design scalable and resilient infrastructure for modern apps.",
-    prize: "₹6,000",
-    icon: Cloud,
-    tags: ["Infrastructure", "DevOps"],
-    details: "Use cloud-native principles to design a distributed system. Participants will be judged on scalability, cost-effectiveness, and fault tolerance."
-  },
-  {
     title: "Project Expo",
-    desc: "Showcase your hardware or software innovations.",
+    desc: "Showcase your hardware or software innovations to industry experts.",
     prize: "₹10,000",
     icon: Cpu,
-    tags: ["Hardware", "Innovation"],
-    details: "Open-themed exhibition for students. Prototypes and working models are highly encouraged. Industry experts will evaluate based on commercial viability and impact."
+    tags: ["Innovation", "Hardware", "Software"],
+    details: "A grand stage for innovators. Whether it's an IoT prototype, an AI-powered app, or a revolutionary hardware design, present your project and compete for the top spot. Evaluation is based on technical complexity, social impact, and scalability."
   },
   {
-    title: "Bug Bounty",
-    desc: "Find and fix critical errors in large-scale codebases.",
-    prize: "₹3,000",
-    icon: Binary,
-    tags: ["Debugging", "Testing"],
-    details: "We provide a buggy codebase; you provide the fixes. Multiple levels of difficulty across different tech stacks including React, Node.js, and Python."
-  },
-  {
-    title: "System Design",
-    desc: "Architect large-scale distributed systems from scratch.",
+    title: "Paperix",
+    desc: "Present your technical research papers on cutting-edge technologies.",
     prize: "₹5,000",
-    icon: Layers,
-    tags: ["Scalability", "Backend"],
-    details: "A design-only competition where you architect components for systems like Uber, Netflix, or WhatsApp. Focus on load balancing, caching, and data consistency."
+    icon: FileText,
+    tags: ["Research", "Presentation"],
+    details: "The ultimate platform for academic excellence. Submit and present your original research papers in domains like AI, Cybersecurity, Blockchain, or Quantum Computing. Focus on methodology, innovation, and clarity of presentation."
+  },
+  {
+    title: "Web craft",
+    desc: "Design and build the most responsive and aesthetic web solutions.",
+    prize: "₹6,000",
+    icon: Globe,
+    tags: ["Frontend", "Backend", "UI/UX"],
+    details: "Transform ideas into digital reality. Participants will be given a theme and must build a functional web application within the time limit. Judging criteria include UI/UX design, code efficiency, and feature implementation."
+  },
+  {
+    title: "Bug Bounding",
+    desc: "Hunt for vulnerabilities and fix critical errors in complex codebases.",
+    prize: "₹4,000",
+    icon: ShieldAlert,
+    tags: ["Debugging", "Security"],
+    details: "Test your analytical skills by diving into buggy codebases. Identify security flaws, logic errors, and performance bottlenecks. The faster and more accurately you patch the system, the higher you climb."
+  },
+  {
+    title: "Quiz war",
+    desc: "Battle it out in a high-intensity technical trivia challenge.",
+    prize: "₹3,000",
+    icon: Trophy,
+    tags: ["Knowledge", "Speed"],
+    details: "A fast-paced technical quiz covering everything from computer architecture to modern software trends. Multiple rounds including buzzer rounds and rapid-fire questions will determine the ultimate tech wizard."
+  },
+  {
+    title: "Prompt Battle",
+    desc: "Master the art of Generative AI by crafting the perfect prompts.",
+    prize: "₹5,000",
+    icon: Sparkles,
+    tags: ["GenAI", "Creativity"],
+    details: "Compete in the frontier of AI. Participants are given specific image or text generation tasks and must use LLMs or diffusion models to produce the closest match using expert prompting techniques."
   }
 ]
 
@@ -98,7 +70,6 @@ export default function Events() {
 
   return (
     <section id="events" className="py-24 relative">
-      {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 blur-[150px] rounded-full -z-10" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 blur-[150px] rounded-full -z-10" />
 
@@ -109,7 +80,7 @@ export default function Events() {
           </Badge>
           <h2 className="text-4xl md:text-7xl font-black font-headline text-gradient mb-6">TECHNICAL ARENA</h2>
           <p className="text-foreground/60 text-lg md:text-xl leading-relaxed">
-            Where theoretical knowledge meets practical execution. Compete with the best minds in the country across diverse technical domains.
+            Push your limits across six specialized domains. Where knowledge meets execution in the ultimate test of skill.
           </p>
         </div>
 
@@ -120,7 +91,6 @@ export default function Events() {
               className="glass p-8 rounded-[2rem] group hover:border-accent border-transparent transition-all duration-500 cursor-pointer flex flex-col h-full relative overflow-hidden"
               onClick={() => setSelectedEvent(event)}
             >
-              {/* Card background effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10 flex flex-col h-full">
@@ -160,13 +130,13 @@ export default function Events() {
         <div className="mt-20 text-center">
           <div className="glass inline-flex items-center gap-6 p-6 rounded-3xl border-white/5">
             <div className="text-left">
-              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Participation Cap</div>
-              <div className="text-xl font-headline text-foreground">50 Teams per Event</div>
+              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Total Events</div>
+              <div className="text-xl font-headline text-foreground">06 Specialized Tracks</div>
             </div>
             <div className="w-px h-12 bg-white/10" />
             <div className="text-left">
-              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Mode</div>
-              <div className="text-xl font-headline text-accent">On-Campus / Hybrid</div>
+              <div className="text-xs font-headline text-foreground/40 uppercase tracking-widest mb-1">Participation</div>
+              <div className="text-xl font-headline text-accent">Teams & Individuals</div>
             </div>
           </div>
         </div>
@@ -202,17 +172,23 @@ export default function Events() {
                 <span className="font-headline text-2xl text-accent">{selectedEvent?.prize}</span>
               </div>
               <div className="p-6 bg-white/5 rounded-3xl border border-white/10 flex flex-col justify-center">
-                <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">ELGIBILITY</span>
+                <span className="font-headline text-[10px] text-foreground/40 uppercase tracking-[0.2em] mb-1">ELIGIBILITY</span>
                 <span className="font-headline text-lg text-foreground">UG/PG Students</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="flex-1 h-14 bg-accent text-background font-black font-headline tracking-widest uppercase hover:bg-accent/80 transition-all rounded-2xl text-lg">
+              <Button 
+                onClick={() => {
+                  setSelectedEvent(null)
+                  document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="flex-1 h-14 bg-accent text-background font-black font-headline tracking-widest uppercase hover:bg-accent/80 transition-all rounded-2xl text-lg"
+              >
                 REGISTER NOW
               </Button>
               <Button variant="outline" className="flex-1 h-14 border-white/10 hover:bg-white/5 font-headline tracking-widest uppercase rounded-2xl">
-                DOWNLOAD BROCHURE
+                RULES BROCHURE
               </Button>
             </div>
           </div>
