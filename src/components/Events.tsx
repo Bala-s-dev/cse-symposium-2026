@@ -158,7 +158,7 @@ const technicalEvents: EventType[] = [
     schedule: '30 Minutes',
     teamSize: 'Individual',
     image:
-      'https://www.shutterstock.com/image-vector/prompt-digital-icons-creative-concept-260nw-2705713619.jpg',
+      'https://img.freepik.com/premium-psd/ai-powered-video-prompt-generation_930095-3582.jpg?semt=ais_user_personalization&w=740&q=80',
     rules: [
       'Individual participation.',
       'Generate creative prompts using AI tools.',
