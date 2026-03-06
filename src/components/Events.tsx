@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
@@ -25,6 +25,7 @@ import {
   LucideIcon,
   Zap,
   X,
+  Trophy,
 } from 'lucide-react';
 
 type EventType = {
@@ -39,6 +40,10 @@ type EventType = {
   schedule: string;
   teamSize: string;
   image: string;
+  prizes?: {
+    first: string;
+    second: string;
+  };
 };
 
 const technicalEvents: EventType[] = [
@@ -50,7 +55,7 @@ const technicalEvents: EventType[] = [
     tags: ['IEEE Format', 'Research'],
     details:
       'A platform for students to present original research. Submit your research paper in PDF format prepared in IEEE standards.',
-    venue: 'Seminar Hall – Block B',
+    venue: 'FX Main Auditorium',
     schedule: '8 mins + 2 mins Q&A',
     teamSize: 'Max 2 members',
     image:
@@ -70,17 +75,17 @@ const technicalEvents: EventType[] = [
     tags: ['Working Model', 'Innovation'],
     details:
       'Present technically innovative or problem-solving oriented projects to a panel of experts.',
-    venue: 'Block A - Main Lobby',
+    venue: 'CSE Classroom',
     schedule: '10 mins per team',
     teamSize: 'Max 3 members',
     image:
       'https://img.freepik.com/free-vector/isometric-expo-flowchart-composition-with-isolated-s-exhibit-booths-stands-people-stage-performance_1284-27644.jpg?semt=ais_hybrid&w=740&q=80',
+    prizes: { first: '₹2000', second: '₹1000' },
     rules: [
       'Maximum 3 members per team.',
       'Participants must present a working model or prototype.',
       'Project must be innovative and problem-solving oriented.',
       'Evaluation: Innovation, practicality, and presentation.',
-      'Participants must arrange their own project materials.',
     ],
   },
   {
@@ -99,7 +104,6 @@ const technicalEvents: EventType[] = [
     rules: [
       'Individual or team of 2 members allowed.',
       'Design a website based on the given theme.',
-      'Internet access may be restricted and AI tools are not allowed.',
       'Judging: Creativity, responsiveness, and functionality.',
     ],
   },
@@ -109,9 +113,8 @@ const technicalEvents: EventType[] = [
     desc: 'Identify and correct errors in programs across various languages.',
     icon: Terminal,
     tags: ['C/Python/Java', 'Logic'],
-    details:
-      'Find and fix bugs in code snippets within a strict time limit without internet resources.',
-    venue: 'Programming Lab',
+    details: 'Find and fix bugs in code snippets within a strict time limit.',
+    venue: 'CSE Lab 1',
     schedule: '45 Minutes',
     teamSize: 'Individual',
     image:
@@ -119,10 +122,8 @@ const technicalEvents: EventType[] = [
     rules: [
       'Individual participation.',
       'Programs will contain errors that need correction.',
-      'Identify and correct errors within the time limit.',
       'Languages: C, Java, or Python.',
       'Time limit: 45 minutes.',
-      'Participants must not use internet resources.',
     ],
   },
   {
@@ -141,8 +142,6 @@ const technicalEvents: EventType[] = [
     rules: [
       'Team of 2 participants.',
       'Rounds: Technical, Rapid Fire, and Visual.',
-      'Covers technology, programming, and general engineering.',
-      'Must answer within the time limit given by the quiz master.',
       "Judges' decision is final.",
     ],
   },
@@ -154,7 +153,7 @@ const technicalEvents: EventType[] = [
     tags: ['GenAI', 'Prompt Engg'],
     details:
       'Generate creative outputs using AI tools based on specific tasks or themes provided.',
-    venue: 'AI Research Lab',
+    venue: 'CSE Lab',
     schedule: '30 Minutes',
     teamSize: 'Individual',
     image:
@@ -162,8 +161,6 @@ const technicalEvents: EventType[] = [
     rules: [
       'Individual participation.',
       'Generate creative prompts using AI tools.',
-      'Specific tasks or themes will be assigned.',
-      'Time limit: 30 minutes.',
       'Evaluation: Creativity, prompt effectiveness, output quality.',
     ],
   },
@@ -171,6 +168,7 @@ const technicalEvents: EventType[] = [
 
 export default function Events() {
   const [selectedEvent, setSelectedEvent] = useState<EventType | null>(null);
+  const [activeTab, setActiveTab] = useState('description');
 
   const googleFormUrl =
     'https://docs.google.com/forms/d/1W9KAAuFQ--g223C8v_VN1JH46qBhgnNlVQ4a7sAovR4/viewform';
@@ -178,38 +176,47 @@ export default function Events() {
   return (
     <section
       id="events"
-      className="py-24 relative bg-[#030712] text-white overflow-hidden min-h-screen"
+      className="py-12 md:py-24 relative bg-[#030712] text-white overflow-hidden min-h-screen"
     >
-      {/* Background Glows */}
-      <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -z-10 animate-pulse" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full -z-10" />
+      {/* Background Orbs */}
+      <div className="absolute top-[-10%] right-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-600/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-600/10 blur-[80px] md:blur-[120px] rounded-full -z-10" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mb-16 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mb-12 md:mb-16 space-y-4"
+        >
           <div className="flex items-center gap-3">
-            <div className="h-[2px] w-12 bg-cyan-400" />
-            <span className="text-cyan-400 uppercase tracking-[0.4em] text-xs font-black">
+            <div className="h-[2px] w-8 md:w-12 bg-cyan-400" />
+            <span className="text-cyan-400 uppercase tracking-[0.4em] text-[10px] md:text-xs font-black">
               Arena 2026
             </span>
           </div>
-          <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.9]">
+          <h2 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.9]">
             Technical <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
               Arena
             </span>
           </h2>
-          <p className="text-white/50 text-xl max-w-xl font-light leading-relaxed">
-            Push your limits across specialized domains where knowledge meets
-            execution.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {technicalEvents.map((event) => (
-            <div
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {technicalEvents.map((event, index) => (
+            <motion.div
               key={event.title}
-              onClick={() => setSelectedEvent(event)}
-              className="group relative h-[480px] rounded-[2.5rem] overflow-hidden cursor-pointer border border-white/10 hover:border-cyan-400/50 transition-all duration-500 bg-[#0a0a0a]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ y: -10 }}
+              onClick={() => {
+                setSelectedEvent(event);
+                setActiveTab('description');
+              }}
+              className="group relative h-[400px] md:h-[480px] rounded-[2.5rem] overflow-hidden cursor-pointer border border-white/10 hover:border-cyan-400/50 transition-all bg-[#0a0a0a]"
             >
               <img
                 src={event.image}
@@ -220,27 +227,27 @@ export default function Events() {
 
               <div className="relative h-full p-8 flex flex-col justify-end">
                 <div className="mb-4">
-                  <div className="p-3 w-fit rounded-xl bg-cyan-400 text-black mb-4 group-hover:scale-110 transition-transform">
+                  <div className="p-3 w-fit rounded-xl bg-cyan-400 text-black mb-4 transition-transform duration-300 group-hover:scale-110">
                     <event.icon className="w-6 h-6" />
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-[10px] uppercase border-white/20 text-white/60 mb-2"
+                    className="text-[10px] uppercase border-white/20 text-white/70 mb-2"
                   >
                     {event.subtitle}
                   </Badge>
-                  <h3 className="text-3xl font-black uppercase mb-2 group-hover:text-cyan-400 transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase mb-2 group-hover:text-cyan-400 transition-colors">
                     {event.title}
                   </h3>
-                  <p className="text-white/60 text-sm line-clamp-2 font-medium">
+                  <p className="text-white/70 text-sm line-clamp-2 font-medium">
                     {event.desc}
                   </p>
                 </div>
-                <div className="flex items-center gap-3 text-cyan-400 font-black text-xs uppercase tracking-widest pt-4 border-t border-white/10 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                <div className="flex items-center gap-3 text-cyan-400 font-black text-xs uppercase tracking-widest pt-4 border-t border-white/10 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
                   Full Dossier <ArrowRight className="w-4 h-4" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -249,138 +256,245 @@ export default function Events() {
         open={!!selectedEvent}
         onOpenChange={(open) => !open && setSelectedEvent(null)}
       >
-        {/* Added [&>button:last-child]:hidden to remove the default small X icon */}
-        <DialogContent className="sm:max-w-4xl bg-[#030712] border-white/10 p-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden text-white outline-none max-h-[90vh] flex flex-col [&>button:last-child]:hidden">
+        <DialogContent className="w-[95vw] md:max-w-4xl bg-[#030712] border-white/10 p-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden text-white outline-none max-h-[90vh] flex flex-col sm:gap-0">
           <button
             onClick={() => setSelectedEvent(null)}
-            className="absolute right-6 top-6 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-cyan-400 hover:text-black transition-colors"
+            className="absolute right-4 top-4 md:right-8 md:top-8 z-[100] p-2 rounded-full bg-black/50 backdrop-blur-md text-white hover:bg-cyan-400 hover:text-black transition-all border border-white/10"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
-          {selectedEvent && (
-            <div className="flex flex-col h-full overflow-y-auto scrollbar-hide">
-              <div className="relative h-64 md:h-96 shrink-0">
-                <img
-                  src={selectedEvent.image}
-                  className="w-full h-full object-cover"
-                  alt={selectedEvent.title}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent" />
-                <div className="absolute bottom-8 left-8 md:left-12 pr-12">
-                  <Badge className="bg-cyan-400 text-black hover:bg-cyan-400 border-none font-black mb-4">
-                    {selectedEvent.subtitle}
-                  </Badge>
-                  <DialogTitle className="text-4xl md:text-6xl font-black uppercase text-white">
-                    {selectedEvent.title}
-                  </DialogTitle>
+          <div className="overflow-y-auto w-full h-full scrollbar-hide">
+            {selectedEvent && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col"
+              >
+                <div className="relative h-56 md:h-96 shrink-0">
+                  <img
+                    src={selectedEvent.image}
+                    className="w-full h-full object-cover"
+                    alt={selectedEvent.title}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent" />
+                  <div className="absolute bottom-6 left-6 md:bottom-10 md:left-12 pr-12">
+                    <Badge className="bg-cyan-400 text-black font-black mb-2 md:mb-4 px-3 py-1">
+                      {selectedEvent.subtitle}
+                    </Badge>
+                    <DialogTitle className="text-3xl md:text-6xl font-black uppercase text-white leading-tight">
+                      {selectedEvent.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-white/60 text-sm mt-2 hidden md:block">
+                      Technical event details, rules, and logistics for{' '}
+                      {selectedEvent.title}.
+                    </DialogDescription>
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 md:p-12 pt-8">
-                <Tabs defaultValue="description" className="w-full">
-                  <TabsList className="w-full justify-start bg-white/5 rounded-2xl p-3 mb-8 border border-white/10">
-                    <TabsTrigger
-                      value="description"
-                      className="flex-1 rounded-xl data-[state=active]:bg-cyan-400 data-[state=active]:text-black font-black uppercase text-[14px] tracking-widest"
-                    >
-                      Info
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="rules"
-                      className="flex-1 rounded-xl data-[state=active]:bg-cyan-400 data-[state=active]:text-black font-black uppercase text-[14px] tracking-widest"
-                    >
-                      Rules
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="logistics"
-                      className="flex-1 rounded-xl data-[state=active]:bg-cyan-400 data-[state=active]:text-black font-black uppercase text-[14px] tracking-widest"
-                    >
-                      venue & Time
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent
-                    value="description"
-                    className="mt-0 outline-none"
+                <div className="p-5 md:p-12 pt-8">
+                  <Tabs
+                    value={activeTab}
+                    onValueChange={setActiveTab}
+                    className="w-full"
                   >
-                    <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 relative overflow-hidden group">
-                      <Zap className="absolute top-[-20px] right-[-20px] w-32 h-32 text-cyan-400/10 rotate-12" />
-                      <p className="text-xl md:text-1xl text-white/90 leading-relaxed italic font-medium relative z-10">
-                        "{selectedEvent.details}"
-                      </p>
+                    <TabsList className="w-full flex-wrap h-auto justify-start bg-white/5 rounded-2xl p-1 md:p-2 mb-8 border border-white/10 relative">
+                      {['description', 'rules', 'logistics'].map((tab) => (
+                        <TabsTrigger
+                          key={tab}
+                          value={tab}
+                          className="flex-1 min-w-[80px] z-10 rounded-xl data-[state=inactive]:text-white/60 data-[state=active]:text-black font-black uppercase text-[10px] md:text-[14px] tracking-widest py-3 md:py-4 transition-all duration-300 relative overflow-hidden"
+                        >
+                          <span className="relative z-20">
+                            {tab === 'description'
+                              ? 'Info'
+                              : tab === 'logistics'
+                                ? 'Venue'
+                                : 'Rules'}
+                          </span>
+                          {activeTab === tab && (
+                            <motion.div
+                              layoutId="activeTabGlow"
+                              className="absolute inset-0 bg-cyan-400 -z-10"
+                              transition={{
+                                type: 'spring',
+                                bounce: 0.2,
+                                duration: 0.6,
+                              }}
+                            />
+                          )}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+
+                    <div className="min-h-[220px]">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={activeTab}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <TabsContent
+                            value="description"
+                            className="mt-0 outline-none space-y-6"
+                          >
+                            <div className="p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] bg-white/5 border-l-4 border-cyan-400 relative overflow-hidden group">
+                              <Zap className="absolute top-[-20px] right-[-20px] w-32 h-32 text-cyan-400/5 rotate-12 group-hover:text-cyan-400/10 transition-colors" />
+                              {/* FONT SIZE IMPROVED HERE */}
+                              <p className="text-base md:text-lg text-white/90 leading-relaxed font-medium relative z-10">
+                                {selectedEvent.details}
+                              </p>
+                            </div>
+                            {selectedEvent.prizes && (
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <PrizeCard
+                                  label="1st Prize"
+                                  amount={selectedEvent.prizes.first}
+                                  color="yellow"
+                                />
+                                <PrizeCard
+                                  label="2nd Prize"
+                                  amount={selectedEvent.prizes.second}
+                                  color="slate"
+                                />
+                              </div>
+                            )}
+                          </TabsContent>
+
+                          <TabsContent
+                            value="rules"
+                            className="mt-0 space-y-3 outline-none"
+                          >
+                            {selectedEvent.rules.map((rule, idx) => (
+                              <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.05 }}
+                                key={`${selectedEvent.title}-rule-${idx}`}
+                                className="flex gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-400/30 hover:bg-white/10 transition-all"
+                              >
+                                <span className="text-cyan-400 font-black text-xl">
+                                  {idx + 1}.
+                                </span>
+                                <p className="text-white font-medium text-sm md:text-lg self-center">
+                                  {rule}
+                                </p>
+                              </motion.div>
+                            ))}
+                          </TabsContent>
+
+                          <TabsContent
+                            value="logistics"
+                            className="mt-0 grid grid-cols-1 sm:grid-cols-3 gap-4 outline-none"
+                          >
+                            <LogisticsCard
+                              icon={MapPin}
+                              label="Venue"
+                              value={selectedEvent.venue}
+                            />
+                            <LogisticsCard
+                              icon={Clock}
+                              label="Time"
+                              value={selectedEvent.schedule}
+                            />
+                            <LogisticsCard
+                              icon={Users}
+                              label="Team"
+                              value={selectedEvent.teamSize}
+                            />
+                          </TabsContent>
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
-                  </TabsContent>
+                  </Tabs>
 
-                  <TabsContent
-                    value="rules"
-                    className="mt-0 space-y-3 outline-none"
+                  <motion.div
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="mt-10 md:mt-16"
                   >
-                    {selectedEvent.rules.map((rule, idx) => (
-                      <div
-                        key={idx}
-                        className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-400/30 transition-all"
+                    <Button
+                      asChild
+                      className="w-full h-16 md:h-20 rounded-2xl md:rounded-3xl bg-cyan-400 text-black font-black tracking-[0.2em] uppercase hover:bg-cyan-300 transition-all shadow-[0_20px_40px_rgba(34,211,238,0.2)] text-base md:text-xl"
+                    >
+                      <a
+                        href={googleFormUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <span className="text-cyan-400 font-black">
-                          {idx + 1}.
-                        </span>
-                        <p className="text-white/70 font-medium">{rule}</p>
-                      </div>
-                    ))}
-                  </TabsContent>
-
-                  <TabsContent
-                    value="logistics"
-                    className="mt-0 grid grid-cols-1 sm:grid-cols-3 gap-4 outline-none"
-                  >
-                    {[
-                      {
-                        icon: MapPin,
-                        label: 'Venue',
-                        value: selectedEvent.venue,
-                      },
-                      {
-                        icon: Clock,
-                        label: 'Time',
-                        value: selectedEvent.schedule,
-                      },
-                      {
-                        icon: Users,
-                        label: 'Team',
-                        value: selectedEvent.teamSize,
-                      },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className="p-6 rounded-3xl bg-white/5 border border-white/10 text-center"
-                      >
-                        <item.icon className="w-6 h-6 text-cyan-400 mx-auto mb-4" />
-                        <h4 className="text-[10px] font-black uppercase text-white/40 tracking-widest mb-1">
-                          {item.label}
-                        </h4>
-                        <p className="font-bold text-lg">{item.value}</p>
-                      </div>
-                    ))}
-                  </TabsContent>
-                </Tabs>
-
-                <Button
-                  asChild
-                  className="w-full h-16 mt-12 rounded-2xl bg-cyan-400 text-black font-black tracking-widest uppercase hover:bg-cyan-300 transition-all shadow-[0_0_30px_rgba(34,211,238,0.3)]"
-                >
-                  <a
-                    href={googleFormUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Initialize Registration
-                  </a>
-                </Button>
-              </div>
-            </div>
-          )}
+                        Initialize Registration
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </div>
         </DialogContent>
       </Dialog>
     </section>
+  );
+}
+
+/**
+ * Sub-components
+ */
+
+function PrizeCard({
+  label,
+  amount,
+  color,
+}: {
+  label: string;
+  amount: string;
+  color: 'yellow' | 'slate';
+}) {
+  const isYellow = color === 'yellow';
+  return (
+    <div
+      className={`p-5 rounded-2xl bg-gradient-to-br border flex items-center gap-5 transition-all hover:scale-[1.02] ${
+        isYellow
+          ? 'from-yellow-500/20 border-yellow-500/30 text-yellow-500'
+          : 'from-slate-400/20 border-slate-400/30 text-slate-300'
+      }`}
+    >
+      <div
+        className={`p-3 rounded-xl text-black ${isYellow ? 'bg-yellow-500' : 'bg-slate-400'}`}
+      >
+        <Trophy className="w-6 h-6" />
+      </div>
+      <div>
+        <p className="text-[10px] uppercase font-black tracking-widest opacity-80 mb-1">
+          {label}
+        </p>
+        <p className="text-2xl font-black text-white">{amount}</p>
+      </div>
+    </div>
+  );
+}
+
+function LogisticsCard({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="p-6 md:p-8 rounded-[2rem] bg-white/5 border border-white/10 text-center hover:bg-white/10 hover:border-cyan-400/40 transition-all group">
+      <div className="w-12 h-12 bg-cyan-400/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-cyan-400/20 transition-all">
+        <Icon className="w-6 h-6 text-cyan-400" />
+      </div>
+      <h4 className="text-[10px] font-black uppercase text-white/50 tracking-[0.2em] mb-2">
+        {label}
+      </h4>
+      <p className="font-bold text-white text-base md:text-lg leading-tight">
+        {value}
+      </p>
+    </div>
   );
 }
